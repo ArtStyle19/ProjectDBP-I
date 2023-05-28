@@ -23,4 +23,4 @@ jobs:
           ARGS: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
           SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
           SOURCE: dist/
-          TARGET: './public_html'
+          TARGET: '/home/u215167/public_html'
