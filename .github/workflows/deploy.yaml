@@ -20,7 +20,7 @@ jobs:
           REMOTE_HOST: 143.198.114.252
           REMOTE_USER: u215167
           REMOTE_PORT: 22  # Puerto SSH, si es diferente al predeterminado
+          ARGS: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
           SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
           SOURCE: dist/
-          TARGET: public_html/
-          ARGS: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
+          TARGET: .
