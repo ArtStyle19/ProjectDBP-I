@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Despliegue
-        uses: easingthemes/ssh-deploy@v2.1.2
+        uses: easingthemes/ssh-deploy@main
         with:
-          sshPrivateKey: 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
-          remoteHost: 143.198.114.252
-          remoteUser: u215167
-          remotePort: 22  # Puerto SSH, si es diferente al predeterminado
-          sshCmdArgs: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
-          source: dist
-          target: /path/to/destination
-          args: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
+          SSH_PRIVATE_KEY: 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
+          REMOTE_HOST: 143.198.114.252
+          REMOTE_USER: u215167
+          REMOTE_PORT: 22  # Puerto SSH, si es diferente al predeterminado
+          SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
+          SOURCE: dist
+          TARGET: /path/to/destination
+          ARGS: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
