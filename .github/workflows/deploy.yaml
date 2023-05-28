@@ -22,5 +22,5 @@ jobs:
           REMOTE_PORT: 22  # Puerto SSH, si es diferente al predeterminado
           SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
           SOURCE: dist/
-          TARGET: /public_html/
+          TARGET: public_html/
           ARGS: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
