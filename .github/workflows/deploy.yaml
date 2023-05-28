@@ -1,4 +1,4 @@
-name: Despliegue automático
+name: Despliegue
 
 on:
   push:
@@ -13,12 +13,14 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
 
-      - name: Despliegue de la carpeta dist
-        uses: easingthemes/ssh-deploy@main
+      - name: Despliegue
+        uses: easingthemes/ssh-deploy@v2.1.2
         with:
-          server: 143.198.114.252
-          port: 22
-          username: u215167
-          password: 1893470
-          local_path: dist/
-          remote_path: /public_html/
+          sshPrivateKey: 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
+          remoteHost: 143.198.114.252
+          remoteUser: u215167
+          remotePort: 22  # Puerto SSH, si es diferente al predeterminado
+          sshCmdArgs: '-o StrictHostKeyChecking=no'  # Opcional, para omitir la verificación del fingerprint del host
+          source: dist
+          target: /path/to/destination
+          args: '-p 1893470'  # Reemplaza 'PASSWORD' con la contraseña real del usuario del servidor
