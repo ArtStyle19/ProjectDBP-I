@@ -16,16 +16,18 @@ const MapWithMarker = () => {
   }, []);
 
   useEffect(() => {
-    fetchCoordinatesFromDatabase()
-      .then((data) => {
-        setCoordinates(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error al obtener las coordenadas:', error);
-        setIsLoading(false);
-      });
-  }, []);
+    if (position.length > 0) {
+      fetchCoordinatesFromDatabase()
+        .then((data) => {
+          setCoordinates(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error al obtener las coordenadas:', error);
+          setIsLoading(false);
+        });
+    }
+  }, [position]);
 
   const fetchCoordinatesFromDatabase = async () => {
     try {
@@ -40,29 +42,33 @@ const MapWithMarker = () => {
     }
   };
 
-  return (
-    <div>
-      {isLoading ? (
-        <div>Cargando...</div>
-      ) : (
-          coordinates.map((coord) => (
-            <MapContainer center={[position[0],position[1]]} zoom={8} style={{ height: '100vh', width: '100%' }}>
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
 
-              <Marker key={coord.id} position={[coord.latitude, coord.longitude]}>
-                <Popup>
-                  <img src={`${coord.foto}`} style={{ width: '200px', height: '200px' }} />
-                  <br></br>
-                  {`${coord.nombres} ha encontrado una indecencia!!!
-                Titulo: ${coord.incidencia}
-                Descripcion: ${coord.descripcion}
-                Coordenadas: ${coord.latitude}, ${coord.longitude}`}
-                </Popup>
-              </Marker>
-            </MapContainer>
-          ))
-      )}
-    </div>
+  if (position.length === 0) {
+    return <div>Obteniendo ubicación...</div>;
+  }
+
+  return (
+    <MapContainer center={[position[0], position[1]]} zoom={8} style={{ height: '100vh', width: '100%' }}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {coordinates.map((coord) => (
+        <Marker key={coord.id} position={[coord.latitude, coord.longitude]}>
+          <Popup className='request-popup'>
+            <img src={`${coord.foto}`} className='card-img-top' />
+            <div className='card-body'>
+              <h5 className='card-title'>{coord.incidencia}</h5>
+              <p className='card-text'>
+                Informante: {coord.nombres}<br />
+                Descripcion: {coord.descripcion} <br />
+                Coordenadas: {coord.latitude}, ${coord.longitude}
+              </p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
 };
 

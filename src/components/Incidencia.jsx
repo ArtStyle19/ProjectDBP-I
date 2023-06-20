@@ -102,7 +102,8 @@ const Incidencia = () => {
         <div class="form-group">
           <label for="foto" class="col-sm-3 control-label">Fotografia</label>
           <div class="col-sm-9">
-            <input type="file" name="foto" accept="image/*" className="form-control" onChange={handleChange} />
+            <input type="file" name="foto" capture="camera" id="camera" accept="image/*" className="form-control" onChange={handleChange} />
+
           </div>
         </div>
         <br></br>

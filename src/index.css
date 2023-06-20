@@ -13,6 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+.card-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 
 a {
   font-weight: 500;

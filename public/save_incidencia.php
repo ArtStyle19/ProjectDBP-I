@@ -10,7 +10,7 @@ $longitude = $_POST['longitude'];
 $foto = $_FILES['foto'];
 
 // Directorio donde se guardará la imagen
-$directorio = '/home/u215167/public_html/fotos/';
+$directorio = './fotos/';
 
 // Nombre único para la imagen (puedes usar algún método para generar un nombre único)
 $nombreImagen = uniqid() . '_' . $foto['name'];
